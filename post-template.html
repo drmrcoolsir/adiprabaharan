@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why B³ = A is harder than it looks — Your Name</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f1efe9;
+    --paper-raised: #fbfaf6;
+    --ink: #16233b;
+    --ink-soft: #3c4a63;
+    --ink-faint: #7c8698;
+    --gold: #b8892b;
+    --teal: #2f6b66;
+    --line: #d8d3c4;
+    --line-strong: #b9b2a0;
+    --margin-w: 84px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:
+      linear-gradient(var(--paper), var(--paper)),
+      repeating-linear-gradient(0deg, transparent 0 27px, var(--line) 27px 28px),
+      repeating-linear-gradient(90deg, transparent 0 27px, var(--line) 27px 28px);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .margin-rule{
+    position:fixed; top:0; bottom:0; left: var(--margin-w);
+    width:1px; background: rgba(184,58,58,0.28); z-index:1;
+  }
+  @media (max-width: 720px){ .margin-rule{ display:none; } }
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 28px var(--margin-w) 28px calc(var(--margin-w) + 32px);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  @media (max-width: 720px){ nav{ padding: 22px 20px; } }
+  .brand{ font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); }
+  .brand strong{ color: var(--ink); font-weight:600; }
+  nav a.back{
+    font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft);
+    text-decoration:none;
+  }
+  nav a.back:hover, nav a.back:focus-visible{ color: var(--gold); }
+
+  article{
+    padding: 72px var(--margin-w) 96px calc(var(--margin-w) + 32px);
+    max-width: 700px;
+  }
+  @media (max-width: 720px){ article{ padding: 56px 20px 72px 20px; } }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  h1{
+    font-family:'Newsreader', serif; font-weight:500; font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 1.15; margin-bottom: 12px;
+  }
+  .meta{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-faint);
+    margin-bottom: 40px;
+  }
+  article p{ color: var(--ink-soft); margin-bottom: 20px; max-width: 62ch; }
+  article strong{ color: var(--ink); }
+  .box{
+    background: var(--paper-raised);
+    border-left: 3px solid var(--teal);
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14.5px;
+    color: var(--ink);
+    border-radius: 0 4px 4px 0;
+  }
+</style>
+</head>
+<body>
+<div class="margin-rule" aria-hidden="true"></div>
+<nav>
+  <div class="brand"><strong>Your Name</strong> — mathematics</div>
+  <a class="back" href="index.html">← back</a>
+</nav>
+
+<article>
+  <div class="eyebrow">Notes · Linear Algebra</div>
+  <h1>Why B³ = A is a harder problem than it looks</h1>
+  <div class="meta">July 2026 · 4 min read</div>
+
+  <p>
+    The problem statement is short: given a matrix <strong>A</strong>, when does there
+    exist a matrix <strong>B</strong> such that B³ = A? It reads like a warm-up exercise,
+    the kind you'd skim past in a problem sheet. It isn't.
+  </p>
+  <p>
+    The first useful move is noticing that conjugation commutes with polynomial
+    operations. If B = PDP⁻¹ for some diagonal D, then B³ = PD³P⁻¹ — so the whole
+    question of finding a cube root reduces to finding a cube root of the eigenvalues,
+    then reassembling the change of basis around it.
+  </p>
+  <div class="box">
+    B = PDP⁻¹  ⟹  B³ = PD³P⁻¹ = A
+  </div>
+  <p>
+    That reframes the problem entirely: instead of hunting for B directly, you're
+    exploiting a factorization you may already have from diagonalizing A. The
+    interesting part isn't the algebra — it's noticing which structure to exploit
+    before you start grinding through it.
+  </p>
+  <p>
+    This is a placeholder post — replace it with your own write-up, or delete it
+    entirely and link your real posts from the homepage.
+  </p>
+</article>
+</body>
+</html>

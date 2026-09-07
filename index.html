@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f1efe9;
+    --paper-raised: #fbfaf6;
+    --ink: #16233b;
+    --ink-soft: #3c4a63;
+    --ink-faint: #7c8698;
+    --gold: #b8892b;
+    --teal: #2f6b66;
+    --line: #d8d3c4;
+    --line-strong: #b9b2a0;
+    --margin-w: 84px;
+    --max-w: 760px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      linear-gradient(var(--paper), var(--paper)),
+      repeating-linear-gradient(0deg, transparent 0 27px, var(--line) 27px 28px),
+      repeating-linear-gradient(90deg, transparent 0 27px, var(--line) 27px 28px);
+    background-blend-mode: normal;
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    opacity: 1;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 27px, rgba(184,137,43,0.05) 27px 28px),
+      repeating-linear-gradient(90deg, transparent 0 27px, rgba(184,137,43,0.05) 27px 28px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .margin-rule{
+    position:fixed;
+    top:0; bottom:0;
+    left: var(--margin-w);
+    width:1px;
+    background: rgba(184,58,58,0.28);
+    z-index:1;
+  }
+  @media (max-width: 720px){ .margin-rule{ display:none; } }
+
+  header, main, footer{ position:relative; z-index:2; }
+
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 28px var(--margin-w) 28px calc(var(--margin-w) + 32px);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  @media (max-width: 720px){ nav{ padding: 22px 20px; } }
+
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+  .brand strong{ color: var(--ink); font-weight:600; }
+
+  .navlinks{ display:flex; gap: 28px; }
+  .navlinks a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration:none;
+    letter-spacing:0.03em;
+    position:relative;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-4px;
+    height:1px; background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  .navlinks a:hover::after, .navlinks a:focus-visible::after{ transform: scaleX(1); }
+  .navlinks a:focus-visible{ outline: 2px solid var(--gold); outline-offset: 4px; }
+
+  section{
+    padding: 96px var(--margin-w) 0 calc(var(--margin-w) + 32px);
+    max-width: calc(var(--max-w) + var(--margin-w) + 32px);
+  }
+  @media (max-width: 720px){
+    section{ padding: 64px 20px 0 20px; }
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"§";
+    color: var(--ink-faint);
+  }
+
+  h1{
+    font-family:'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 14ch;
+  }
+  h1 em{
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .lede{
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin-top: 28px;
+  }
+
+  /* --- derivation strip: signature element --- */
+  .derivation{
+    margin-top: 56px;
+    margin-bottom: 40px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    gap: 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+  .derivation .step{
+    opacity:0;
+    transform: translateY(6px);
+    animation: rise 0.6s ease forwards;
+    padding: 6px 14px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper-raised);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .derivation .step:nth-child(1){ animation-delay: 0.05s; }
+  .derivation .step:nth-child(3){ animation-delay: 0.25s; }
+  .derivation .step:nth-child(5){ animation-delay: 0.45s; }
+  .derivation .step:nth-child(7){ animation-delay: 0.65s; }
+  .derivation .arrow{
+    padding: 0 10px;
+    color: var(--gold);
+    font-size: 15px;
+  }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){
+    .derivation .step{ animation: none; opacity:1; transform:none; }
+  }
+  @media (max-width: 560px){
+    .derivation{ flex-direction:column; align-items:flex-start; }
+    .derivation .arrow{ transform: rotate(90deg); padding: 4px 0; }
+  }
+
+  .section-title{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size: 1.9rem;
+    margin-bottom: 32px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 640px){ .cards{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: var(--paper-raised);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .card h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 10px;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .card h3 span{ color: var(--ink-faint); font-weight:400; font-size:11px; }
+  .card p{ font-size: 14.5px; color: var(--ink-soft); }
+
+  .quant-box{
+    margin-top: 8px;
+    margin-bottom: 88px;
+    border-left: 3px solid var(--teal);
+    background: var(--paper-raised);
+    padding: 26px 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .quant-box h3{
+    font-family:'Newsreader', serif;
+    font-size: 1.25rem;
+    color: var(--teal);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .quant-box p{ color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+  .quant-box .tags{
+    margin-top: 16px;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .quant-box .tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    border: 1px solid rgba(47,107,102,0.35);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .posts{ margin-bottom: 88px; }
+  .post{
+    display:flex;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .post:first-child{ border-top: 1px solid var(--line); }
+  .post .date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    width: 90px;
+    flex-shrink:0;
+  }
+  .post .body h4{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+  .post .body a{
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: left bottom;
+    transition: background-size 0.25s ease;
+  }
+  .post .body a:hover, .post .body a:focus-visible{ background-size: 100% 1px; }
+  .post .body p{ font-size: 14px; color: var(--ink-soft); }
+
+  footer{
+    padding: 48px var(--margin-w) 64px calc(var(--margin-w) + 32px);
+    border-top: 1px solid var(--line-strong);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  @media (max-width: 720px){ footer{ padding: 40px 20px 48px 20px; } }
+  footer .links{ display:flex; gap: 22px; }
+  footer a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration:none;
+  }
+  footer a:hover, footer a:focus-visible{ color: var(--gold); }
+  footer .note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  ::selection{ background: rgba(184,137,43,0.25); }
+</style>
+</head>
+<body>
+<div class="margin-rule" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <div class="brand"><strong>Your Name</strong> — mathematics</div>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#focus">coursework</a>
+      <a href="#quant">quant finance</a>
+      <a href="#blog">blog</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="about">
+    <div class="eyebrow">Introduction</div>
+    <h1>Mathematics, read closely — from <em>proof</em> to <em>price</em>.</h1>
+    <div class="role">B.Sc./M.Sci Mathematics · Imperial College London</div>
+    <p class="lede">
+      I'm a mathematics student working across pure and applied theory — linear algebra,
+      group theory, probability, and mathematical physics in coursework, with a running
+      self-directed thread into stochastic calculus and quantitative finance. This page
+      is where I keep notes, half-finished proofs, and the occasional write-up worth sharing.
+    </p>
+
+    <div class="derivation" aria-label="progression from pure mathematics to quantitative finance">
+      <span class="step">groups &amp; rings</span>
+      <span class="arrow">→</span>
+      <span class="step">linear algebra</span>
+      <span class="arrow">→</span>
+      <span class="step">probability</span>
+      <span class="arrow">→</span>
+      <span class="step">stochastic calculus</span>
+      <span class="arrow">→</span>
+      <span class="step">option pricing</span>
+    </div>
+  </section>
+
+  <section id="focus">
+    <div class="eyebrow">Coursework</div>
+    <h2 class="section-title">Where the time is going</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Linear Algebra <span>core</span></h3>
+        <p>Matrix similarity and diagonalization, nilpotent maps and kernel chains,
+        orthogonal matrices and Gram–Schmidt — with a soft spot for counterexample
+        construction over rote proof.</p>
+      </div>
+      <div class="card">
+        <h3>Group Theory <span>core</span></h3>
+        <p>Subgroups of the symmetric groups S₃ and S₄, worked through cycle
+        decomposition and closure arguments.</p>
+      </div>
+      <div class="card">
+        <h3>Probability &amp; Statistics <span>core</span></h3>
+        <p>Joint CDFs, moment generating functions, probability generating functions,
+        and continuous random variables — the bridge into everything stochastic.</p>
+      </div>
+      <div class="card">
+        <h3>Mathematical Physics <span>core</span></h3>
+        <p>Conductance and current density, Laplace's and Poisson's equations,
+        conformal mapping, and the electric circuit / random walk analogy —
+        escape probabilities and harmonic functions in particular.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quant">
+    <div class="eyebrow">Beyond the syllabus</div>
+    <h2 class="section-title">Quantitative finance, on the side</h2>
+    <div class="quant-box">
+      <h3>Where pure math meets the market</h3>
+      <p>
+        A sustained, self-directed interest in the overlap between pure mathematics and
+        quantitative finance — working through stochastic calculus, binomial pricing models,
+        and martingales, alongside interview-style problem sets that lean on backward
+        induction, the pigeonhole principle, and base-case-up reasoning.
+      </p>
+      <div class="tags">
+        <span>stochastic calculus</span>
+        <span>martingales</span>
+        <span>binomial pricing</span>
+        <span>brain teasers</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <div class="eyebrow">Notes</div>
+    <h2 class="section-title">Recent posts</h2>
+    <div class="posts">
+      <article class="post">
+        <div class="date">2026·07</div>
+        <div class="body">
+          <h4><a href="post-template.html">Why B³ = A is a harder problem than it looks</a></h4>
+          <p>Conjugation commutes with polynomial operations — and once you see that,
+          the whole factorization opens up.</p>
+        </div>
+      </article>
+      <article class="post">
+        <div class="date">2026·06</div>
+        <div class="body">
+          <h4><a href="#">The electric circuit / random walk analogy, properly motivated</a></h4>
+          <p>Escape probabilities as harmonic functions, and why current density is the
+          right lens for both problems.</p>
+        </div>
+      </article>
+      <article class="post">
+        <div class="date">2026·05</div>
+        <div class="body">
+          <h4><a href="#">First pass at Shreve: filtrations, and why they're annoying at first</a></h4>
+          <p>Notes from working through <em>Stochastic Calculus for Finance I</em> —
+          building intuition before the machinery.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="note">Your Name · Mathematics, Imperial College London</div>
+  <div class="links">
+    <a href="mailto:you@example.com">email</a>
+    <a href="#">github</a>
+    <a href="#">linkedin</a>
+  </div>
+</footer>
+
+</body>
+</html>
