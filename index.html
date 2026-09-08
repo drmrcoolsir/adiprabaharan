@@ -333,22 +333,18 @@
     <h1>Mathematician with aspirations
     <div class="role">M.Sci Mathematics · Imperial College London</div>
     <p class="lede">
-      I'm a mathematics student working across pure and applied theory — linear algebra,
-      group theory, probability, and mathematical physics in coursework, with a running
+      I'm a mathematics student working across pure and applied theory. I am studying modules such as linear algebra and
+      group theory, probability and statistics, and calculus and its applications in coursework, with a running
       self-directed thread into stochastic calculus and quantitative finance. This page
-      is where I keep notes, half-finished proofs, and the occasional write-up worth sharing.
+      is where I keep notes, projects I'm currently working on, and where I am in my journey to working in quant finance.
     </p>
 
-    <div class="derivation" aria-label="progression from pure mathematics to quantitative finance">
-      <span class="step">groups &amp; rings</span>
+    <div class="derivation" aria-label="progression into quantitative finance">
+      <span class="step">application to spring weeks</span>
       <span class="arrow">→</span>
-      <span class="step">linear algebra</span>
+      <span class="step">online assessment practise</span>
       <span class="arrow">→</span>
-      <span class="step">probability</span>
-      <span class="arrow">→</span>
-      <span class="step">stochastic calculus</span>
-      <span class="arrow">→</span>
-      <span class="step">option pricing</span>
+      <span class="step">interview practise</span>
     </div>
   </section>
 
@@ -359,8 +355,8 @@
       <div class="card">
         <h3>Linear Algebra <span>core</span></h3>
         <p>Matrix similarity and diagonalization, nilpotent maps and kernel chains,
-        orthogonal matrices and Gram–Schmidt — with a soft spot for counterexample
-        construction over rote proof.</p>
+        orthogonal matrices and Gram–Schmidt. Work currently limited to that assigned by Imperial,
+        but will persue personal research in the near future.</p>
       </div>
       <div class="card">
         <h3>Group Theory <span>core</span></h3>
@@ -369,38 +365,47 @@
       </div>
       <div class="card">
         <h3>Probability &amp; Statistics <span>core</span></h3>
-        <p>Joint CDFs, moment generating functions, probability generating functions,
-        and continuous random variables — the bridge into everything stochastic.</p>
+        <p>Where the majority of my time is spent. Mostly probability puzzles, having learnt about joint CDFs, moment generating functions,
+           probability generating functions, and random variables.</p>
       </div>
       <div class="card">
-        <h3>Mathematical Physics <span>core</span></h3>
-        <p>Conductance and current density, Laplace's and Poisson's equations,
-        conformal mapping, and the electric circuit / random walk analogy —
-        escape probabilities and harmonic functions in particular.</p>
+        <h3>Applied Mathematics <span>core</span></h3>
+        <p>Applications of graphs and nodes. Conductance and current density, Laplace's and Poisson's equations,
+        conformal mapping, and the electric circuit / random walk analogy
+        (escape probabilities and harmonic functions in particular).</p>
       </div>
     </div>
   </section>
 
   <section id="quant">
     <div class="eyebrow">Beyond the syllabus</div>
-    <h2 class="section-title">Quantitative finance, on the side</h2>
+    <h2 class="section-title">Quantitative finance</h2>
     <div class="quant-box">
-      <h3>Where pure math meets the market</h3>
+      <h3>Applying my studies to the market</h3>
       <p>
         A sustained, self-directed interest in the overlap between pure mathematics and
         quantitative finance — working through stochastic calculus, binomial pricing models,
-        and martingales, alongside interview-style problem sets that lean on backward
-        induction, the pigeonhole principle, and base-case-up reasoning.
-      </p>
+        and martingales, alongside interview-style problem sets. Will be posting interesting questions I find.</p>
       <div class="tags">
         <span>stochastic calculus</span>
-        <span>martingales</span>
-        <span>binomial pricing</span>
+        <span>probability puzzles</span>
         <span>brain teasers</span>
       </div>
     </div>
+    
   </section>
-
+    <div class="quant-box">
+      <h3>Binomial Option Pricing & Dynamic Delta Engine</h3>
+      <p>
+        A high-performance quantitative finance suite that models derivative pricing and portfolio risk in discrete time.
+        Features a Cox-Ross-Rubinstein (CRR) tree parameter calibration matching continuous Geometric Brownian Motion (GBM) variance, 
+        vectorized forward stock matrix generation, and a backward induction solver that computes option payoffs and dynamic replication hedges.
+      <div class="tags">
+        <span>coding in python</span>
+        <span>binomial pricing</span>
+      </div>
+    </div>
+  </section>
   <section id="blog">
     <div class="eyebrow">Notes</div>
     <h2 class="section-title">Recent posts</h2>
@@ -411,22 +416,6 @@
           <h4><a href="post-template.html">Why B³ = A is a harder problem than it looks</a></h4>
           <p>Conjugation commutes with polynomial operations — and once you see that,
           the whole factorization opens up.</p>
-        </div>
-      </article>
-      <article class="post">
-        <div class="date">2026·06</div>
-        <div class="body">
-          <h4><a href="#">The electric circuit / random walk analogy, properly motivated</a></h4>
-          <p>Escape probabilities as harmonic functions, and why current density is the
-          right lens for both problems.</p>
-        </div>
-      </article>
-      <article class="post">
-        <div class="date">2026·05</div>
-        <div class="body">
-          <h4><a href="#">First pass at Shreve: filtrations, and why they're annoying at first</a></h4>
-          <p>Notes from working through <em>Stochastic Calculus for Finance I</em> —
-          building intuition before the machinery.</p>
         </div>
       </article>
     </div>
